@@ -11,3 +11,5 @@ docker build -t dockerized-flask .
 ```bash
 docker run -itd --name dockerized-flask -p 5000:5000 dockerized-flask
 ```
+
+
