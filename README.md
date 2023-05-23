@@ -1,4 +1,11 @@
-# dockerized-flask
+# simple-flask
+
+A Simple flask application to test out various technologies:
+
+- Containers (docker)
+- AWS CodeBuild
+- Amazon ECR
+- Amazon ECS
 
 ## Build
 
