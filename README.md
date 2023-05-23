@@ -91,13 +91,23 @@ aws ecs update-service \
     --enable-execute-command \
     --force-new-deployment
 
-# Add ALB
+arn:aws:elasticloadbalancing:us-east-1:152539975130:targetgroup/tg-ecs-dockerized-flask-arm64/8aafb92600bacb82
+
+# Add ALB - x86_64
 aws ecs update-service \
     --cluster MultiArchCluster  \
     --task-definition dockerized-flask-x86_64 \
     --service DockerFlask-x86_64 \
     --force-new-deployment \
-    --load-balancers "targetGroupArn=arn:aws:elasticloadbalancing:us-east-1:152539975130:targetgroup/alb-ecs-dockerized-flask-x86-64/a81b52e7686e1b83,loadBalancerName=alb-ecs-dockerized-flask,containerName=flask-app,containerPort=5000"
+    --load-balancers "targetGroupArn=arn:aws:elasticloadbalancing:us-east-1:152539975130:targetgroup/alb-ecs-dockerized-flask-x86-64/a81b52e7686e1b83,containerName=flask-app,containerPort=5000"
+
+# Add ALB - x86_64
+aws ecs update-service \
+    --cluster MultiArchCluster  \
+    --task-definition dockerized-flask-ARM64 \
+    --service DockerFlask-ARM64 \
+    --force-new-deployment \
+    --load-balancers "targetGroupArn=arn:aws:elasticloadbalancing:us-east-1:152539975130:targetgroup/tg-ecs-dockerized-flask-arm64/8aafb92600bacb82,containerName=flask-app,containerPort=5000"
 
 # Update networking configuration
 aws ecs update-service \

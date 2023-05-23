@@ -2,12 +2,15 @@
 from flask import Flask, jsonify
 import platform
 
+
 app = Flask(__name__)
 
 
 @app.route("/", methods=["GET"])
 def say_hello():
-    return jsonify({"msg": f"Hello from Flask - {platform.machine()}"})
+    return jsonify(
+        {"msg": "Hello from Flask", "arch": f"platform.machine()", "ip": f""}
+    )
 
 
 @app.route("/health")
