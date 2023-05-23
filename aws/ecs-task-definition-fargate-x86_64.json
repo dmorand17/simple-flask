@@ -1,0 +1,54 @@
+{
+  "family": "dockerized-flask-x86_64",
+  "taskRoleArn": "arn:aws:iam::152539975130:role/ecs-task-role",
+  "executionRoleArn": "arn:aws:iam::152539975130:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "essential": true,
+      "image": "public.ecr.aws/aws-observability/aws-for-fluent-bit:latest",
+      "name": "log_router",
+      "firelensConfiguration": {
+        "type": "fluentbit"
+      },
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "firelens-container",
+          "awslogs-region": "us-east-1",
+          "awslogs-create-group": "true",
+          "awslogs-stream-prefix": "firelens"
+        }
+      },
+      "memoryReservation": 50
+    },
+    {
+      "essential": true,
+      "image": "152539975130.dkr.ecr.us-east-1.amazonaws.com/dockerized-flask:latest",
+      "name": "flask-app",
+      "portMappings": [
+        {
+          "containerPort": 5000
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awsfirelens",
+        "options": {
+          "Name": "cloudwatch",
+          "region": "us-east-1",
+          "log_group_name": "firelens-fluent-bit",
+          "auto_create_group": "true",
+          "log_stream_prefix": "from-fluent-bit"
+        }
+      },
+      "memoryReservation": 100
+    }
+  ],
+  "requiresCompatibilities": ["FARGATE"],
+  "memory": "512",
+  "cpu": "256",
+  "networkMode": "awsvpc",
+  "runtimePlatform": {
+    "operatingSystemFamily": "LINUX",
+    "cpuArchitecture": "X86_64"
+  }
+}

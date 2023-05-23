@@ -1,11 +1,18 @@
+#!/usr/bin/env python3
 from flask import Flask, jsonify
+import platform
 
 app = Flask(__name__)
 
 
 @app.route("/", methods=["GET"])
 def say_hello():
-    return jsonify({"msg": "Hello from Flask"})
+    return jsonify({"msg": f"Hello from Flask - {platform.machine()}"})
+
+
+@app.route("/health")
+def health():
+    return jsonify({"msg": "Healthy"})
 
 
 if __name__ == "__main__":
