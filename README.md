@@ -7,6 +7,14 @@ A Simple flask application to test out various technologies:
 - Amazon ECR
 - Amazon ECS
 
+**References:**
+
+- Building multi-architecture docker images
+  https://aws.amazon.com/blogs/devops/creating-multi-architecture-docker-images-to-support-graviton2-using-aws-codebuild-and-aws-codepipeline/
+
+- Using buildx for multi-architecture images
+  https://aws.amazon.com/blogs/compute/how-to-quickly-setup-an-experimental-environment-to-run-containers-on-x86-and-aws-graviton2-based-amazon-ec2-instances-effort-to-port-a-container-based-application-from-x86-to-graviton2/
+
 ## Build
 
 Local build
