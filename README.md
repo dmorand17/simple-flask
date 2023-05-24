@@ -126,3 +126,24 @@ aws ecs update-service \
     --force-new-deployment \
     --network-configuration "awsvpcConfiguration={subnets=[subnet-05879663ec53b5775,subnet-031c93cffa8b58491],securityGroups=[sg-03f0220e12fdbace3],assignPublicIp=ENABLED}"
 ```
+
+## Amazon IAM Details
+
+See https://docs.aws.amazon.com/codebuild/latest/userguide/sample-docker.html for details
+
+Example statement to allow CodeBuild to push to ECR
+
+```json
+    {
+      "Action": [
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:CompleteLayerUpload",
+        "ecr:GetAuthorizationToken",
+        "ecr:InitiateLayerUpload",
+        "ecr:PutImage",
+        "ecr:UploadLayerPart"
+      ],
+      "Resource": "*",
+      "Effect": "Allow"
+    },
+```
