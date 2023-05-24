@@ -3,6 +3,8 @@ version: 0.2
 phases:
   install:
     commands:
+      - aws --version
+      - git --version
       - yum update -y
       - echo "Starting install..."
       - export BUILDX_VERSION=$(curl --silent "https://api.github.com/repos/docker/buildx/releases/latest" |jq -r .tag_name)
@@ -13,9 +15,10 @@ phases:
       - docker run --privileged --rm tonistiigi/binfmt --install amd64
   pre_build:
     commands:
-      - aws --version
-      - git --version
-
+      - echo Build started on `date`
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=${COMMIT_HASH:=latest}
+      - echo "IMAGE_TAG $IMAGE_TAG"
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
   build:
