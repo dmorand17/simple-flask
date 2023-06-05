@@ -56,7 +56,7 @@ Used for local testing
 docker run -itd --name simple-flask --label "simple-flask" -p 5000:5000 simple-flask
 
 # Kill container
-docker container kill $(docker ps --filter "label=simple-flask" -q)
+docker kill $(docker ps --filter "label=simple-flask" -q) && docker rm simple-flask
 ```
 
 ## ECR Deployment

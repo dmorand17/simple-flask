@@ -76,7 +76,7 @@ def health():
 
 
 # @app.route("/api/v1/movies/list")
-@app.route("movies/list")
+@app.route("/movies/list")
 def get_movies_list():
     return jsonify(movie_list), 200
 
