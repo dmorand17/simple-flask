@@ -155,7 +155,7 @@ aws ecs update-service \
 aws ecs update-service \
     --cluster MultiArchCluster  \
     --task-definition simple-flask-ARM64 \
-    --service DockerFlask-ARM64 \
+    --service DockerFlask-arm64 \
     --force-new-deployment \
     --load-balancers "targetGroupArn=arn:aws:elasticloadbalancing:us-east-1:152539975130:targetgroup/tg-simple-flask-arm64/3d30a4fc868f18b3,containerName=flask-app,containerPort=5000"
 
