@@ -1,5 +1,5 @@
 {
-  "family": "flask-with-firelens",
+  "family": "simple-flask-multi-arch-x86_64",
   "taskRoleArn": "arn:aws:iam::152539975130:role/ecs-task-role",
   "executionRoleArn": "arn:aws:iam::152539975130:role/ecsTaskExecutionRole",
   "containerDefinitions": [
@@ -23,12 +23,11 @@
     },
     {
       "essential": true,
-      "image": "152539975130.dkr.ecr.us-east-1.amazonaws.com/domorand-8184:latest",
+      "image": "152539975130.dkr.ecr.us-east-1.amazonaws.com/simple-flask-multi-arch:latest",
       "name": "flask-app",
       "portMappings": [
         {
-          "containerPort": 5000,
-          "hostPort": 80
+          "containerPort": 5000
         }
       ],
       "logConfiguration": {
@@ -43,5 +42,13 @@
       },
       "memoryReservation": 100
     }
-  ]
+  ],
+  "requiresCompatibilities": ["FARGATE"],
+  "memory": "512",
+  "cpu": "256",
+  "networkMode": "awsvpc",
+  "runtimePlatform": {
+    "operatingSystemFamily": "LINUX",
+    "cpuArchitecture": "X86_64"
+  }
 }

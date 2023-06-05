@@ -1,5 +1,5 @@
 {
-  "family": "simple-flask-x86_64",
+  "family": "simple-flask-multi-arch-arm64",
   "taskRoleArn": "arn:aws:iam::152539975130:role/ecs-task-role",
   "executionRoleArn": "arn:aws:iam::152539975130:role/ecsTaskExecutionRole",
   "containerDefinitions": [
@@ -23,7 +23,7 @@
     },
     {
       "essential": true,
-      "image": "152539975130.dkr.ecr.us-east-1.amazonaws.com/simple-flask:latest-amd64",
+      "image": "152539975130.dkr.ecr.us-east-1.amazonaws.com/simple-flask-multi-arch:latest",
       "name": "flask-app",
       "portMappings": [
         {
@@ -49,6 +49,6 @@
   "networkMode": "awsvpc",
   "runtimePlatform": {
     "operatingSystemFamily": "LINUX",
-    "cpuArchitecture": "X86_64"
+    "cpuArchitecture": "ARM64"
   }
 }

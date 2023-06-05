@@ -1,5 +1,5 @@
 {
-  "family": "dockerized-flask-arm64",
+  "family": "simple-flask-arm64",
   "taskRoleArn": "arn:aws:iam::152539975130:role/ecs-task-role",
   "executionRoleArn": "arn:aws:iam::152539975130:role/ecsTaskExecutionRole",
   "containerDefinitions": [
@@ -23,7 +23,7 @@
     },
     {
       "essential": true,
-      "image": "152539975130.dkr.ecr.us-east-1.amazonaws.com/dockerized-flask:latest",
+      "image": "152539975130.dkr.ecr.us-east-1.amazonaws.com/simple-flask:latest-arm64",
       "name": "flask-app",
       "portMappings": [
         {
